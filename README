@@ -1,0 +1,4 @@
+*************************************************************
+
+-This is a simple web browser based on PyQt and webkit engine
+-Currently working on tabs.
