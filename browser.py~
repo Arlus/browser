@@ -20,12 +20,12 @@ class Browser(QtGui.QMainWindow):
         self.gridLayout.setSpacing(0)
 
         self.horizontalLayout = QtGui.QHBoxLayout()
-        self.tb_url = QtGui.QLineEdit(self.frame)
-        self.bt_back = QtGui.QPushButton(self.frame)
-        self.bt_ahead = QtGui.QPushButton(self.frame)
+        self.url_box = QtGui.QLineEdit(self.frame)
+        self.back = QtGui.QPushButton(self.frame)
+        self.forward = QtGui.QPushButton(self.frame)
 
-        self.bt_back.setIcon(QtGui.QIcon().fromTheme("go-previous"))
-        self.bt_ahead.setIcon(QtGui.QIcon().fromTheme("go-next"))
+        self.back.setIcon(QtGui.QIcon().fromTheme("go-previous"))
+        self.forward.setIcon(QtGui.QIcon().fromTheme("go-next"))
 
         self.horizontalLayout.addWidget(self.bt_back)
         self.horizontalLayout.addWidget(self.bt_ahead)
@@ -37,16 +37,16 @@ class Browser(QtGui.QMainWindow):
         self.mainLayout.addWidget(self.frame)
         self.setCentralWidget(self.centralwidget)
 
-        self.connect(self.tb_url, QtCore.SIGNAL("returnPressed()"), self.browse)
-        self.connect(self.bt_back, QtCore.SIGNAL("clicked()"), self.html.back)
-        self.connect(self.bt_ahead, QtCore.SIGNAL("clicked()"), self.html.forward)
+        self.connect(self.url_box, QtCore.SIGNAL("returnPressed()"), self.browse)
+        self.connect(self.back, QtCore.SIGNAL("clicked()"), self.html.back)
+        self.connect(self.forward, QtCore.SIGNAL("clicked()"), self.html.forward)
 
         self.default_url = "http://google.co.ke/"
-        self.tb_url.setText(self.default_url)
-        self.go()
-    def go(self):
-        if self.tb_url.text():
-            url = self.tb_url.text()
+        self.url_box.setText(self.default_url)
+        self.browse()
+    def browse(self):
+        if self.url_box.text():
+            url = self.url_box.text()
         else:
             self.default_url
         self.html.load(QtCore.QUrl(url))
